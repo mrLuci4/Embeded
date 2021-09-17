@@ -15,6 +15,6 @@ S_DEPS += \
 
 
 # Each subdirectory must supply rules for building sources it contributes
-Core/Startup/startup_stm32f401retx.o: ../Core/Startup/startup_stm32f401retx.s Core/Startup/subdir.mk
-	arm-none-eabi-gcc -mcpu=cortex-m4 -g3 -c -I"/home/dkosutar/STM32CubeIDE/Workspace/RTOS_LED_TEST/ThirdParty/SEGGER/Config" -x assembler-with-cpp -MMD -MP -MF"Core/Startup/startup_stm32f401retx.d" -MT"$@" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "$@" "$<"
+Core/Startup/%.o: ../Core/Startup/%.s Core/Startup/subdir.mk
+	arm-none-eabi-gcc -mcpu=cortex-m4 -g3 -DDEBUG -c -I"/home/dkosutar/Workspace/Embeded/ThirdParty/SEGGER/Config" -x assembler-with-cpp -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "$@" "$<"
 
